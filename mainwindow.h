@@ -18,8 +18,15 @@ public:
 public slots:
    void ShowHelloBack();
 
+protected:
+   void showEvent(QShowEvent *ev);
+
+private:
+   QObject *m_WebSocketObj;
 private:
    Ui::MainWindow *ui;
+
+   void ShowLoginDialog();
 
 };
 #endif // MAINWINDOW_H

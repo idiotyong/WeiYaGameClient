@@ -15,6 +15,7 @@ public:
 signals:
    void closed();
    void HelloBack();
+   void LoginBack(bool _bSuccess);
 
 private:
    void SendWeiyaWebSocketMesaage(const TWeiYaWebSocketMsg WeiYaWebSocketMsg);
@@ -27,9 +28,14 @@ private:
    QWebSocket m_webSocket;
    QUrl m_url;
    bool m_debug;
+   bool m_bIsConnect;
 
 public slots:
    void SendHelloMsg();
+   void SendLoginMsg(QString _sUserName, QString _sPassword);
+
+   bool IsConnect();
+
 };
 
 #endif // WEIYAWEBSOCKET_H
