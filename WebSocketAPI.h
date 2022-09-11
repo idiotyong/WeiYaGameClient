@@ -14,6 +14,8 @@ union TClientToServer
    int m_iGetStateIDRelpy;
    int m_iSetStateID;
    int m_iSetStateIDRelpy;
+   int m_iUpdateEventID;
+   int m_iUpdateEventIDRelpy;
 };
 
 union TServerToClient
@@ -23,6 +25,8 @@ union TServerToClient
    int m_iGetStateIDRelpy;
    int m_iSetStateID;
    int m_iSetStateIDRelpy;
+   int m_iUpdateEventID;
+   int m_iUpdateEventIDRelpy;
 };
 
 union TWeiYaWebSocketData
@@ -33,14 +37,16 @@ union TWeiYaWebSocketData
 
 enum TWeiYaMsgType
 {
-   wym_Hello = 0,    // C->S
-   wym_ImHere,       // S->C
-   wym_Login,        // C->S
-   wym_LoginBack,    // S->C
-   wym_GetState,     // Both
-   wym_GetStateBack, // Both
-   wym_SetState,     // Both
-   wym_SetStateBack, // Both
+   wym_Hello = 0,       // C->S
+   wym_ImHere,          // S->C
+   wym_Login,           // C->S
+   wym_LoginBack,       // S->C
+   wym_GetState,        // Both
+   wym_GetStateBack,    // Both
+   wym_SetState,        // Both
+   wym_SetStateBack,    // Both
+   wym_UpdateEvent,     // Both
+   wym_UpdateEventBack, // Both
 };
 
 struct TWeiYaWebSocketMsg
