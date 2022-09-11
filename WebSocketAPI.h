@@ -7,12 +7,24 @@ struct TLoginData
    char  m_sPassWord[128];
 };
 
+union TStateType
+{
+   int m_iInt;
+   double m_dfDouble;
+};
+
+struct TStateData
+{
+   int m_iStateID;
+   TStateType m_State;
+};
+
 union TClientToServer
 {
    TLoginData LoginData;
    int m_iGetStateID;
-   int m_iGetStateIDRelpy;
-   int m_iSetStateID;
+   TStateData m_sdGetStateIDRelpy;
+   TStateData m_sdSetState;
    int m_iSetStateIDRelpy;
    int m_iUpdateEventID;
    int m_iUpdateEventIDRelpy;
@@ -22,8 +34,8 @@ union TServerToClient
 {
    int m_iLoginReply;
    int m_iGetStateID;
-   int m_iGetStateIDRelpy;
-   int m_iSetStateID;
+   TStateData m_sdGetStateIDRelpy;
+   TStateData m_sdSetState;
    int m_iSetStateIDRelpy;
    int m_iUpdateEventID;
    int m_iUpdateEventIDRelpy;

@@ -24,10 +24,14 @@ signals:
    void SendLoginMsgSignal(QString _sUserName, QString _sPassword);
 
    bool GetConnectState();
+   void SendVotedNumMsgSignal(int _iNum);
 
 private slots:
    void LoginOk();
    void LoginBack(bool _bSuccess);
 
+   void GameOkClick();
+   void StartToVote();
+   void OnRewarded();
 };
 #endif // MAINWINDOW_H

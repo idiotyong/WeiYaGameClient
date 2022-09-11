@@ -7,17 +7,24 @@ MainWindow::MainWindow(QObject *WebSocketObj, QWidget *parent)
    , ui(new Ui::MainWindow)
 {
    ui->setupUi(this);
-   ui->tabWidget->setTabVisible(0, false);
-   ui->tabWidget->setTabVisible(1, false);
+   for(int i = 0; i < ui->tabWidget->count(); i++)
+   {
+      ui->tabWidget->setTabVisible(i, false);
+   }
    ui->tabWidget->setCurrentIndex(0);
 
-   connect(ui->btnOk, SIGNAL(clicked()), WebSocketObj, SLOT(SendHelloMsg()));
+   connect(ui->btnOk, SIGNAL(clicked()), this, SLOT(GameOkClick()));
 
    connect(this, SIGNAL(SendLoginMsgSignal(QString, QString)), WebSocketObj, SLOT(SendLoginMsg(QString, QString)));
    connect(this, SIGNAL(GetConnectState()), WebSocketObj, SLOT(IsConnect()));
+   connect(this, SIGNAL(SendVotedNumMsgSignal(int)), WebSocketObj, SLOT(SendVotedNumMsg(int)));
 
    connect(WebSocketObj, SIGNAL(LoginBack(bool)), this, SLOT(LoginBack(bool)));
    connect(ui->btnLoginOK, SIGNAL(clicked()), this, SLOT(LoginOk()));
+   connect(WebSocketObj, SIGNAL(StartToVote()), this, SLOT(StartToVote()));
+   connect(WebSocketObj, SIGNAL(RewardedEvent()), this, SLOT(OnRewarded()));
+   connect(WebSocketObj, SIGNAL(OnGetCandidateNo(int)), ui->lcdRewardNumber, SLOT(display(int)));
+
 }
 
 MainWindow::~MainWindow()
@@ -51,5 +58,21 @@ void MainWindow::LoginBack(bool _bSuccess)
    {
       QMessageBox::information(NULL, "Error", "Fail to Login !");
    }
+}
+
+void MainWindow::GameOkClick()
+{
+   SendVotedNumMsgSignal(ui->cbSelectNo->currentIndex());
+   ui->btnOk->setEnabled(false);
+}
+
+void MainWindow::StartToVote()
+{
+   ui->btnOk->setEnabled(true);
+}
+
+void MainWindow::OnRewarded()
+{
+   ui->tabWidget->setCurrentIndex(2);
 }
 

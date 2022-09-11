@@ -18,6 +18,14 @@ void WeiyaWebSocket::SendWeiyaWebSocketMesaage(const TWeiYaWebSocketMsg WeiYaWeb
    m_webSocket.sendBinaryMessage(l_baMsg);
 }
 
+void WeiyaWebSocket::GetWeiyaWebSocketState(const int _iStateID)
+{
+   TWeiYaWebSocketMsg l_WeiYaWebSocketMsg;
+   l_WeiYaWebSocketMsg.WeiYaMsgType = wym_GetState;
+   l_WeiYaWebSocketMsg.WeiYaWebSocketData.ClientToServer.m_iGetStateID = _iStateID;
+   SendWeiyaWebSocketMesaage(l_WeiYaWebSocketMsg);
+}
+
 void WeiyaWebSocket::onConnected()
 {
    m_bIsConnect = true;
@@ -39,10 +47,32 @@ void WeiyaWebSocket::onbinaryMessageReceived(const QByteArray &message)
       case wym_GetState:
       break;
       case wym_GetStateBack:
+         switch(l_WeiYaWebSocketMsg.WeiYaWebSocketData.ServerToClient.m_sdGetStateIDRelpy.m_iStateID)
+         {
+            case 100:
+               OnGetCandidateNo(l_WeiYaWebSocketMsg.WeiYaWebSocketData.ServerToClient.m_sdGetStateIDRelpy.m_State.m_iInt);
+            break;
+         }
       break;
       case wym_SetState:
       break;
       case wym_SetStateBack:
+      break;
+      case wym_UpdateEvent:
+         switch(l_WeiYaWebSocketMsg.WeiYaWebSocketData.ServerToClient.m_iUpdateEventID)
+         {
+            case 222://** Start/Reset to Vote
+               StartToVote();
+               GetWeiyaWebSocketState(100);
+            break;
+
+            case 777://** Rewarded!
+               RewardedEvent();
+            break;
+
+         };
+      break;
+      case wym_UpdateEventBack:
       break;
 
    }
@@ -71,3 +101,12 @@ bool WeiyaWebSocket::IsConnect()
    return m_bIsConnect;
 }
 
+void WeiyaWebSocket::SendVotedNumMsg(int _iNUm)
+{
+   TWeiYaWebSocketMsg l_WeiYaWebSocketMsg;
+   l_WeiYaWebSocketMsg.WeiYaMsgType = wym_SetState;
+   l_WeiYaWebSocketMsg.WeiYaWebSocketData.ClientToServer.m_sdSetState.m_iStateID = 1;
+   l_WeiYaWebSocketMsg.WeiYaWebSocketData.ClientToServer.m_sdSetState.m_State.m_iInt = _iNUm;
+   SendWeiyaWebSocketMesaage(l_WeiYaWebSocketMsg);
+
+}

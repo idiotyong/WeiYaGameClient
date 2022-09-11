@@ -17,8 +17,14 @@ signals:
    void HelloBack();
    void LoginBack(bool _bSuccess);
 
+   void StartToVote();
+   void RewardedEvent();
+
+   void OnGetCandidateNo(int _iNUm);
+
 private:
    void SendWeiyaWebSocketMesaage(const TWeiYaWebSocketMsg WeiYaWebSocketMsg);
+   void GetWeiyaWebSocketState(const int _iStateID);
 
 private Q_SLOTS:
    void onConnected();
@@ -35,6 +41,7 @@ public slots:
    void SendLoginMsg(QString _sUserName, QString _sPassword);
 
    bool IsConnect();
+   void SendVotedNumMsg(int _iNUm);
 
 };
 
