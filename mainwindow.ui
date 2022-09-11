@@ -51,7 +51,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="iconSize">
        <size>
@@ -91,30 +91,62 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="ledtUserName">
-            <property name="font">
-             <font>
-              <pointsize>14</pointsize>
-             </font>
-            </property>
-            <property name="inputMask">
-             <string/>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
-            <property name="dragEnabled">
-             <bool>false</bool>
-            </property>
-            <property name="placeholderText">
-             <string>ov123</string>
-            </property>
-            <property name="clearButtonEnabled">
-             <bool>false</bool>
-            </property>
+           <widget class="QComboBox" name="cbUserName">
+            <item>
+             <property name="text">
+              <string>ov001</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ov002</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ov003</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ov004</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ov005</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ov006</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ov007</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ov008</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ov009</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ov010</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>ov011</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>

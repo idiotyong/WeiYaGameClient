@@ -45,7 +45,7 @@ void MainWindow::LoginOk()
       return;
    }
 
-   SendLoginMsgSignal(ui->ledtUserName->text(), "");
+   SendLoginMsgSignal(ui->cbUserName->currentText(), "");
 }
 
 void MainWindow::LoginBack(bool _bSuccess)
