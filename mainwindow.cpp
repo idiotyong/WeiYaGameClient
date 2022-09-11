@@ -1,14 +1,23 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "logindialog.h"
+#include <QMessageBox>
 
 MainWindow::MainWindow(QObject *WebSocketObj, QWidget *parent)
    : QMainWindow(parent)
    , ui(new Ui::MainWindow)
-   , m_WebSocketObj(WebSocketObj)
 {
    ui->setupUi(this);
+   ui->tabWidget->setTabVisible(0, false);
+   ui->tabWidget->setTabVisible(1, false);
+   ui->tabWidget->setCurrentIndex(0);
+
    connect(ui->btnOk, SIGNAL(clicked()), WebSocketObj, SLOT(SendHelloMsg()));
+
+   connect(this, SIGNAL(SendLoginMsgSignal(QString, QString)), WebSocketObj, SLOT(SendLoginMsg(QString, QString)));
+   connect(this, SIGNAL(GetConnectState()), WebSocketObj, SLOT(IsConnect()));
+
+   connect(WebSocketObj, SIGNAL(LoginBack(bool)), this, SLOT(LoginBack(bool)));
+   connect(ui->btnLoginOK, SIGNAL(clicked()), this, SLOT(LoginOk()));
 }
 
 MainWindow::~MainWindow()
@@ -21,16 +30,26 @@ void MainWindow::ShowHelloBack()
    ui->tbServerMsg->append("I'm Here!");
 }
 
-void MainWindow::showEvent(QShowEvent *ev)
+void MainWindow::LoginOk()
 {
-   QMainWindow::showEvent(ev);
-   ShowLoginDialog();
+   if(!GetConnectState())
+   {
+      QMessageBox::information(NULL, "Error", "Fail to Connect Server!");
+      return;
+   }
+
+   SendLoginMsgSignal(ui->ledtUserName->text(), "");
 }
 
-void MainWindow::ShowLoginDialog()
+void MainWindow::LoginBack(bool _bSuccess)
 {
-   LoginDialog *l_ldDialog = new LoginDialog(m_WebSocketObj);
-
-   l_ldDialog->exec();
-   delete l_ldDialog;
+   if(_bSuccess)
+   {
+      ui->tabWidget->setCurrentIndex(1);
+   }
+   else
+   {
+      QMessageBox::information(NULL, "Error", "Fail to Login !");
+   }
 }
+

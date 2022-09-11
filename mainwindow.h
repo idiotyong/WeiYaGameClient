@@ -18,15 +18,16 @@ public:
 public slots:
    void ShowHelloBack();
 
-protected:
-   void showEvent(QShowEvent *ev);
-
-private:
-   QObject *m_WebSocketObj;
 private:
    Ui::MainWindow *ui;
+signals:
+   void SendLoginMsgSignal(QString _sUserName, QString _sPassword);
 
-   void ShowLoginDialog();
+   bool GetConnectState();
+
+private slots:
+   void LoginOk();
+   void LoginBack(bool _bSuccess);
 
 };
 #endif // MAINWINDOW_H
