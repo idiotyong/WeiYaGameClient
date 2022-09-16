@@ -2,15 +2,21 @@
 #include "weiyawebsocket.h"
 #include <QtWebSockets/QtWebSockets>
 #include <QApplication>
+#include <QSettings>
 
 int main(int argc, char *argv[])
 {
    QApplication a(argc, argv);
-   WeiyaWebSocket wws(QUrl(QStringLiteral("ws://localhost:8000")));
+   QSettings m_stIniFile( QCoreApplication::applicationDirPath() + "\\Config.ini", QSettings::IniFormat);
+   QString l_sIP = m_stIniFile.value("WebSocket/IPAddress", "localhost").toString();
+   int l_iPort = m_stIniFile.value("WebSocket/Port", 8000).toInt();
+   QString l_sWsDNS = QStringLiteral("ws://") + l_sIP + QStringLiteral(":") + QString::number(l_iPort);
+   WeiyaWebSocket wws(QUrl::fromUserInput(l_sWsDNS)) ;
    MainWindow w(&wws);
 
    QObject::connect(&wws, &WeiyaWebSocket::HelloBack, &w, &MainWindow::ShowHelloBack);
    QObject::connect(&wws, &WeiyaWebSocket::closed, &a, &QCoreApplication::quit);
+   QObject::connect(&w, &MainWindow::closed, &a, &QCoreApplication::quit);
 
    w.show();
    return a.exec();

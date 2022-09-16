@@ -21,6 +21,7 @@ MainWindow::MainWindow(QObject *WebSocketObj, QWidget *parent)
 
    connect(WebSocketObj, SIGNAL(LoginBack(bool)), this, SLOT(LoginBack(bool)));
    connect(ui->btnLoginOK, SIGNAL(clicked()), this, SLOT(LoginOk()));
+   connect(ui->btnCancel, SIGNAL(clicked()), this, SLOT(LoginCancel()));
    connect(WebSocketObj, SIGNAL(StartToVote()), this, SLOT(StartToVote()));
    connect(WebSocketObj, SIGNAL(RewardedEvent()), this, SLOT(OnRewarded()));
    connect(WebSocketObj, SIGNAL(OnGetCandidateNo(int)), ui->lcdRewardNumber, SLOT(display(int)));
@@ -46,6 +47,11 @@ void MainWindow::LoginOk()
    }
 
    SendLoginMsgSignal(ui->cbUserName->currentText(), "");
+}
+
+void MainWindow::LoginCancel()
+{
+   closed();
 }
 
 void MainWindow::LoginBack(bool _bSuccess)

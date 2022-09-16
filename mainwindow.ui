@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>253</width>
-    <height>502</height>
+    <height>330</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -168,10 +168,10 @@
           <item>
            <widget class="QLineEdit" name="ledtPassword">
             <property name="enabled">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
             <property name="inputMask">
-             <string>*</string>
+             <string notr="true"/>
             </property>
            </widget>
           </item>
@@ -282,7 +282,7 @@
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>140</y>
+          <y>0</y>
           <width>201</width>
           <height>91</height>
          </rect>

@@ -14,7 +14,8 @@ class MainWindow : public QMainWindow
 public:
    MainWindow(QObject *WebSocketObj, QWidget *parent = nullptr);
    ~MainWindow();
-
+signals:
+   void closed();
 public slots:
    void ShowHelloBack();
 
@@ -28,6 +29,7 @@ signals:
 
 private slots:
    void LoginOk();
+   void LoginCancel();
    void LoginBack(bool _bSuccess);
 
    void GameOkClick();
