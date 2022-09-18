@@ -1,4 +1,5 @@
 #include "weiyawebsocket.h"
+#include <QRandomGenerator>
 
 WeiyaWebSocket::WeiyaWebSocket(const QUrl &url, QObject *parent)
    : QObject{parent}
@@ -8,6 +9,8 @@ WeiyaWebSocket::WeiyaWebSocket(const QUrl &url, QObject *parent)
    connect(&m_webSocket, &QWebSocket::binaryMessageReceived,
            this, &WeiyaWebSocket::onbinaryMessageReceived);
    m_webSocket.open(QUrl(url));
+
+   m_iPrevNum = 0;
 }
 
 void WeiyaWebSocket::SendWeiyaWebSocketMesaage(const TWeiYaWebSocketMsg WeiYaWebSocketMsg)
@@ -62,12 +65,27 @@ void WeiyaWebSocket::onbinaryMessageReceived(const QByteArray &message)
          switch(l_WeiYaWebSocketMsg.WeiYaWebSocketData.ServerToClient.m_iUpdateEventID)
          {
             case 222://** Start/Reset to Vote
-               StartToVote();
                GetWeiyaWebSocketState(100);
+
+               if(m_bRandom)
+               {
+                  m_iPrevNum = QRandomGenerator::global()->bounded(30);
+                  OnSetRandomNoText(QString::number(m_iPrevNum));
+               }
+
+               if(m_bAuto)
+               {
+                  SendVotedNumMsg(m_iPrevNum);
+               }
+               else
+               {
+                  StartToVote(); //**Signal
+               }
+
             break;
 
             case 777://** Rewarded!
-               RewardedEvent();
+               RewardedEvent();//**Signal
             break;
 
          };
@@ -109,4 +127,23 @@ void WeiyaWebSocket::SendVotedNumMsg(int _iNUm)
    l_WeiYaWebSocketMsg.WeiYaWebSocketData.ClientToServer.m_sdSetState.m_State.m_iInt = _iNUm;
    SendWeiyaWebSocketMesaage(l_WeiYaWebSocketMsg);
 
+   m_iPrevNum = _iNUm;
 }
+
+void WeiyaWebSocket::SetAuto(bool _bEnabled)
+{
+   m_bAuto = _bEnabled;
+}
+
+void WeiyaWebSocket::SetRandom(bool _bEnabled)
+{
+   m_bRandom = _bEnabled;
+
+   if(m_bRandom)
+   {
+      m_iPrevNum = QRandomGenerator::global()->bounded(30);
+      OnSetRandomNoText(QString::number(m_iPrevNum));
+   }
+
+}
+

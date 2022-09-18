@@ -18,6 +18,8 @@ MainWindow::MainWindow(QObject *WebSocketObj, QWidget *parent)
    connect(this, SIGNAL(SendLoginMsgSignal(QString, QString)), WebSocketObj, SLOT(SendLoginMsg(QString, QString)));
    connect(this, SIGNAL(GetConnectState()), WebSocketObj, SLOT(IsConnect()));
    connect(this, SIGNAL(SendVotedNumMsgSignal(int)), WebSocketObj, SLOT(SendVotedNumMsg(int)));
+   connect(ui->cbAuto , SIGNAL(clicked(bool)), WebSocketObj, SLOT(SetAuto(bool)));
+   connect(ui->cbRandom , SIGNAL(clicked(bool)), WebSocketObj, SLOT(SetRandom(bool)));
 
    connect(WebSocketObj, SIGNAL(LoginBack(bool)), this, SLOT(LoginBack(bool)));
    connect(ui->btnLoginOK, SIGNAL(clicked()), this, SLOT(LoginOk()));
@@ -25,7 +27,7 @@ MainWindow::MainWindow(QObject *WebSocketObj, QWidget *parent)
    connect(WebSocketObj, SIGNAL(StartToVote()), this, SLOT(StartToVote()));
    connect(WebSocketObj, SIGNAL(RewardedEvent()), this, SLOT(OnRewarded()));
    connect(WebSocketObj, SIGNAL(OnGetCandidateNo(int)), ui->lcdRewardNumber, SLOT(display(int)));
-
+   connect(WebSocketObj, SIGNAL(OnSetRandomNoText(QString)), ui->cbSelectNo, SLOT(setCurrentText(QString)));
 }
 
 MainWindow::~MainWindow()

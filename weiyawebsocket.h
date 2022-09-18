@@ -22,6 +22,8 @@ signals:
 
    void OnGetCandidateNo(int _iNUm);
 
+   void OnSetRandomNoText(QString _sNum);
+
 private:
    void SendWeiyaWebSocketMesaage(const TWeiYaWebSocketMsg WeiYaWebSocketMsg);
    void GetWeiyaWebSocketState(const int _iStateID);
@@ -35,6 +37,10 @@ private:
    QUrl m_url;
    bool m_debug;
    bool m_bIsConnect;
+   bool m_bAuto;
+   bool m_bRandom;
+
+   int m_iPrevNum;
 
 public slots:
    void SendHelloMsg();
@@ -43,6 +49,8 @@ public slots:
    bool IsConnect();
    void SendVotedNumMsg(int _iNUm);
 
+   void SetAuto(bool _bEnabled);
+   void SetRandom(bool _bEnabled);
 };
 
 #endif // WEIYAWEBSOCKET_H
