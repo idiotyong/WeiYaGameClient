@@ -9,6 +9,7 @@ WeiyaWebSocket::WeiyaWebSocket(const QUrl &url, QObject *parent)
    connect(&m_webSocket, &QWebSocket::binaryMessageReceived,
            this, &WeiyaWebSocket::onbinaryMessageReceived);
    m_webSocket.open(QUrl(url));
+   m_url = url;
 
    m_iPrevNum = 0;
 }
@@ -149,6 +150,6 @@ void WeiyaWebSocket::SetRandom(bool _bEnabled)
 
 QString WeiyaWebSocket::SendIPAddress()
 {
-   return m_url.url();
+   return m_url.toString();
 }
 

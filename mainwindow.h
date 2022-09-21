@@ -16,7 +16,6 @@ public:
    ~MainWindow();
 signals:
    void closed();
-   QString GetIPAddress();
 public slots:
    void ShowHelloBack();
 
@@ -27,6 +26,7 @@ signals:
 
    bool GetConnectState();
    void SendVotedNumMsgSignal(int _iNum);
+   QString GetIPAddress();
 
 private slots:
    void LoginOk();
