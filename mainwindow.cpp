@@ -18,6 +18,7 @@ MainWindow::MainWindow(QObject *WebSocketObj, QWidget *parent)
    connect(this, SIGNAL(SendLoginMsgSignal(QString, QString)), WebSocketObj, SLOT(SendLoginMsg(QString, QString)));
    connect(this, SIGNAL(GetConnectState()), WebSocketObj, SLOT(IsConnect()));
    connect(this, SIGNAL(SendVotedNumMsgSignal(int)), WebSocketObj, SLOT(SendVotedNumMsg(int)));
+   connect(this, SIGNAL(GetIPAddress()), WebSocketObj, SLOT(SendIPAddress()));
    connect(ui->cbAuto , SIGNAL(clicked(bool)), WebSocketObj, SLOT(SetAuto(bool)));
    connect(ui->cbRandom , SIGNAL(clicked(bool)), WebSocketObj, SLOT(SetRandom(bool)));
 
@@ -44,7 +45,8 @@ void MainWindow::LoginOk()
 {
    if(!GetConnectState())
    {
-      QMessageBox::information(NULL, "Error", "Fail to Connect Server!");
+      QString l_sIP = GetIPAddress();
+      QMessageBox::information(NULL, "Error", "Fail to Connect Server! IP: " + l_sIP);
       return;
    }
 

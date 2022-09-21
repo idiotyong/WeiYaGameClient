@@ -16,6 +16,7 @@ public:
    ~MainWindow();
 signals:
    void closed();
+   QString GetIPAddress();
 public slots:
    void ShowHelloBack();
 

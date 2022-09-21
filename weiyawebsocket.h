@@ -51,6 +51,9 @@ public slots:
 
    void SetAuto(bool _bEnabled);
    void SetRandom(bool _bEnabled);
+
+   QString SendIPAddress();
+
 };
 
 #endif // WEIYAWEBSOCKET_H

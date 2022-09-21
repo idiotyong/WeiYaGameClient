@@ -147,3 +147,8 @@ void WeiyaWebSocket::SetRandom(bool _bEnabled)
 
 }
 
+QString WeiyaWebSocket::SendIPAddress()
+{
+   return m_url.url();
+}
+
