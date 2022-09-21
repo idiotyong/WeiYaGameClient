@@ -6,8 +6,6 @@
 
 int main(int argc, char *argv[])
 {
-   qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
-
    QApplication a(argc, argv);
    QSettings m_stIniFile( QCoreApplication::applicationDirPath() + "\\Config.ini", QSettings::IniFormat);
    QString l_sIP = m_stIniFile.value("WebSocket/IPAddress", "localhost").toString();
