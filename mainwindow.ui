@@ -94,6 +94,11 @@
            <widget class="QComboBox" name="cbUserName">
             <item>
              <property name="text">
+              <string>ov000</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>ov001</string>
              </property>
             </item>
