@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
    QApplication a(argc, argv);
    QSettings m_stIniFile( QCoreApplication::applicationDirPath() + "/Config.ini", QSettings::IniFormat);
-   QString l_sIP = m_stIniFile.value("WebSocket/IPAddress", "192.168.0.157").toString();
+   QString l_sIP = m_stIniFile.value("WebSocket/IPAddress", "192.168.1.113").toString();
    int l_iPort = m_stIniFile.value("WebSocket/Port", 8000).toInt();
    QString l_sWsDNS = QStringLiteral("ws://") + l_sIP + QStringLiteral(":") + QString::number(l_iPort);
    WeiyaWebSocket wws(QUrl::fromUserInput(l_sWsDNS)) ;
