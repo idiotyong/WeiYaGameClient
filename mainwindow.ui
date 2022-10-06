@@ -91,68 +91,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="cbUserName">
-            <item>
-             <property name="text">
-              <string>ov000</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ov001</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ov002</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ov003</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ov004</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ov005</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ov006</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ov007</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ov008</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ov009</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ov010</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ov011</string>
-             </property>
-            </item>
-           </widget>
+           <widget class="QLineEdit" name="ledtUserID"/>
           </item>
          </layout>
         </item>
@@ -231,6 +170,9 @@
            <font>
             <pointsize>14</pointsize>
            </font>
+          </property>
+          <property name="maxVisibleItems">
+           <number>10</number>
           </property>
           <item>
            <property name="text">
@@ -387,10 +329,64 @@
             <string>30</string>
            </property>
           </item>
+          <item>
+           <property name="text">
+            <string>31</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>32</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>33</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>34</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>35</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>36</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>37</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>38</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>39</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>40</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item>
-         <widget class="QTextBrowser" name="tbServerMsg"/>
+         <widget class="QTextBrowser" name="tbServerMsg">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QPushButton" name="btnOk">
@@ -424,6 +420,19 @@
         </property>
         <property name="text">
          <string>Congratulations!</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="btnContinue">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>130</y>
+          <width>80</width>
+          <height>24</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Continue</string>
         </property>
        </widget>
       </widget>

@@ -7,6 +7,8 @@ MainWindow::MainWindow(QObject *WebSocketObj, QWidget *parent)
    , ui(new Ui::MainWindow)
 {
    ui->setupUi(this);
+   ui->tbServerMsg->setVisible(false);
+
    for(int i = 0; i < ui->tabWidget->count(); i++)
    {
       ui->tabWidget->setTabVisible(i, false);
@@ -25,6 +27,7 @@ MainWindow::MainWindow(QObject *WebSocketObj, QWidget *parent)
    connect(WebSocketObj, SIGNAL(LoginBack(bool)), this, SLOT(LoginBack(bool)));
    connect(ui->btnLoginOK, SIGNAL(clicked()), this, SLOT(LoginOk()));
    connect(ui->btnCancel, SIGNAL(clicked()), this, SLOT(LoginCancel()));
+   connect(ui->btnContinue , SIGNAL(clicked()), this, SLOT(ContinueAfterAward()));
    connect(WebSocketObj, SIGNAL(StartToVote()), this, SLOT(StartToVote()));
    connect(WebSocketObj, SIGNAL(RewardedEvent()), this, SLOT(OnRewarded()));
    connect(WebSocketObj, SIGNAL(OnGetCandidateNo(int)), ui->lcdRewardNumber, SLOT(display(int)));
@@ -50,7 +53,7 @@ void MainWindow::LoginOk()
       return;
    }
 
-   SendLoginMsgSignal(ui->cbUserName->currentText(), "");
+   SendLoginMsgSignal(ui->ledtUserID->text(), ui->ledtPassword->text());
 }
 
 void MainWindow::LoginCancel()
@@ -84,5 +87,10 @@ void MainWindow::StartToVote()
 void MainWindow::OnRewarded()
 {
    ui->tabWidget->setCurrentIndex(2);
+}
+
+void MainWindow::ContinueAfterAward()
+{
+   ui->tabWidget->setCurrentIndex(1);
 }
 

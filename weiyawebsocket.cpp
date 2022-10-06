@@ -70,7 +70,7 @@ void WeiyaWebSocket::onbinaryMessageReceived(const QByteArray &message)
 
                if(m_bRandom)
                {
-                  m_iPrevNum = QRandomGenerator::global()->bounded(30);
+                  m_iPrevNum = QRandomGenerator::global()->bounded(40);
                   OnSetRandomNoText(QString::number(m_iPrevNum));
                }
 

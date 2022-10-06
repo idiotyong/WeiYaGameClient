@@ -36,5 +36,7 @@ private slots:
    void GameOkClick();
    void StartToVote();
    void OnRewarded();
+
+   void ContinueAfterAward();
 };
 #endif // MAINWINDOW_H
