@@ -49,7 +49,7 @@ void MainWindow::LoginOk()
    if(!GetConnectState())
    {
       QString l_sIP = GetIPAddress();
-      QMessageBox::information(NULL, "Error", "Fail to Connect Server! IP: " + l_sIP);
+      QMessageBox::information(NULL, QObject::tr("Error"), QObject::tr("Fail to Connect Server! IP: ") + l_sIP  );
       return;
    }
 
@@ -69,7 +69,7 @@ void MainWindow::LoginBack(bool _bSuccess)
    }
    else
    {
-      QMessageBox::information(NULL, "Error", "Fail to Login !");
+      QMessageBox::information(NULL, QObject::tr("Error"), QObject::tr("Fail to Login !") );
    }
 }
 
