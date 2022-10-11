@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/img/mainwindows">
+        <file>Image/WinAward.png</file>
+    </qresource>
+    <qresource prefix="/file/translang">
+        <file>CHT.qm</file>
+        <file>CHT.ts</file>
+        <file>ENG.qm</file>
+        <file>ENG.ts</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>Font/NotoSansTC-Black.otf</file>
+        <file>Font/NotoSansTC-Bold.otf</file>
+        <file>Font/NotoSansTC-Light.otf</file>
+        <file>Font/NotoSansTC-Medium.otf</file>
+        <file>Font/NotoSansTC-Regular.otf</file>
+        <file>Font/NotoSansTC-Thin.otf</file>
+    </qresource>
+</RCC>
